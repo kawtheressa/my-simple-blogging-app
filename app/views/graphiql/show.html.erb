@@ -1,0 +1,18 @@
+<div id="graphiql-container"></div>
+
+<script>
+// Define your graphQLFetcher (Which will call your graphql api)
+function graphQLFetcher(graphQLParams) {
+  return fetch(window.location.origin + '/queries', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(graphQLParams),
+  }).then(response => response.json());
+}
+ReactDOM.render(
+  React.createElement(GraphiQL, {
+    fetcher: graphQLFetcher,
+  }),
+  document.getElementById("graphiql-container")
+);
+</script>
